@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Services — Haylee Jacobson</title>
+    
+    <!-- SEO Basics -->
+    <meta name="description" content="Professional photography and graphic design services by Haylee Jacobson in South-Eastern Idaho. Affordable portrait, family, wedding, branding and logo packages for 2025-2026.">
+    
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="Services — Haylee Jacobson | Photographer & Graphic Designer">
+    <meta property="og:description" content="Explore photography and graphic design services in South-Eastern Idaho. Starter packages available for portraits, families, weddings, branding & more.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/FAEAD4/3A83A3?text=Haylee+Jacobson+Services">
+    <meta property="og:url" content="https://yourdomain.com/services.html">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cardo:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* Near full-screen carousel hero */
+        .services-hero {
+            position: relative;
+            height: 85vh;
+            min-height: 600px;
+            overflow: hidden;
+        }
+        .carousel-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        .carousel-slide.active {
+            opacity: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            text-shadow: 0 3px 8px rgba(0,0,0,0.6);
+            padding: 2rem;
+        }
+        .hero-content h1 {
+            font-size: clamp(4.5rem, 10vw, 8rem);
+            margin-bottom: 0.8rem;
+        }
+        .hero-content p {
+            font-size: 1.8rem;
+            max-width: 700px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <div class="logo">Haylee Jacobson</div>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span class="hamburger"></span></button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Near full-screen carousel hero -->
+        <section class="services-hero">
+            <div class="carousel-slide active" style="background-image: url('https://via.placeholder.com/1920x1080/FAEAD4/3A83A3?text=Service+Hero+1+-+Replace+Me');"></div>
+            <div class="carousel-slide" style="background-image: url('https://via.placeholder.com/1920x1080/6299C1/FAEAD4?text=Service+Hero+2+-+Replace+Me');"></div>
+            <div class="carousel-slide" style="background-image: url('https://via.placeholder.com/1920x1080/A0CBE5/3A83A3?text=Service+Hero+3+-+Replace+Me');"></div>
+            <div class="carousel-slide" style="background-image: url('https://via.placeholder.com/1920x1080/3A83A3/FAEAD4?text=Service+Hero+4+-+Replace+Me');"></div>
+            <!-- Add 1-2 more if desired -->
+
+            <div class="hero-content container">
+                <div>
+                    <h1>Services</h1>
+                    <p>Affordable, high-quality photography & graphic design — South-Eastern Idaho</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background: white;">
+            <div class="container">
+                <h2>Photography Services</h2>
+                <p class="tagline">As a graduating visual communication student (Spring 2026), I'm offering starter pricing to build experience, grow my portfolio, and save for new gear. All sessions include online gallery delivery (photos on a thumbdrive may also be provided but with a fee).</p>
+
+                <div class="flex-gallery" style="gap: 2.5rem; margin: 3rem 0;">
+                    <div style="flex: 1 1 320px; background: var(--light); padding: 2rem; border-radius: 12px;">
+                        <h3>Portrait / Headshot Session</h3>
+                        <ul>
+                            <li>45–60 min session</li>
+                            <li>+45 fully edited high-res images</li>
+                            <li>Private online gallery</li>
+                        </ul>
+                        <p><strong>Introductory Price: $65</strong></p>
+                    </div>
+
+                    <div style="flex: 1 1 320px; background: var(--light); padding: 2rem; border-radius: 12px;">
+                        <h3>Family / Couple Session</h3>
+                        <ul>
+                            <li>60–90 min session</li>
+                            <li>+30 edited high-res images</li>
+                            <li>Full online gallery</li>
+                        </ul>
+                        <p><strong>Introductory Price: $85</strong></p>
+                    </div>
+
+                    <div style="flex: 1 1 320px; background: var(--light); padding: 2rem; border-radius: 12px;">
+                        <h3>Wedding / Elopement</h3>
+                        <ul>
+                            <li>Custom coverage (hours negotiable)</li>
+                            <li>75+ edited images</li>
+                            <li>Online Gallery</li>
+                        </ul>
+                        <p><strong>Starting at $250</strong> – contact for quote</p>
+                        <p>Warning: Little experience in event photography</p>
+                    </div>
+                </div>
+
+                <h2>Graphic Design Services</h2>
+                <div class="flex-gallery" style="gap: 2.5rem; margin: 3rem 0;">
+                    <div style="flex: 1 1 320px; background: var(--light); padding: 2rem; border-radius: 12px;">
+                        <h3>Logo & Brand Identity</h3>
+                        <ul>
+                            <li>Logo design (primary + variations)</li>
+                            <li>Color palette & typography guide</li>
+                            <li>2 rounds of revisions</li>
+                        </ul>
+                        <p><strong>Introductory Price: $175</strong></p>
+                    </div>
+
+                    <div style="flex: 1 1 320px; background: var(--light); padding: 2rem; border-radius: 12px;">
+                        <h3>Social Media Kit / Print Collateral</h3>
+                        <ul>
+                            <li>Business card, flyer, or post templates</li>
+                            <li>Source files included</li>
+                        </ul>
+                        <p><strong>Starting at $90–$150</strong></p>
+                    </div>
+                </div>
+
+                <h3 style="text-align: center; margin: 4rem 0 2rem;">Client Photo Galleries</h3>
+                <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem;">
+                    I deliver your final edited photos through <strong>Pixieset</strong> — beautiful, private option, and easy to download/share. 
+                    <br><a href="https://hayleejacobsonphotography.mypixieset.com/" target="_blank" style="color: var(--primary);">View example gallery →</a>
+                </p>
+
+                <h3 style="margin-top: 5rem;">Frequently Asked Questions</h3>
+                <div style="max-width: 900px; margin: 2rem auto;">
+                    <div class="faq-item">
+                        <button class="faq-question">How soon can I book a session?</button>
+                        <div class="faq-answer">Most weekends and many weekday evenings are available. Contact me to check current availability!</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">When will I receive my photos?</button>
+                        <div class="faq-answer">Edited galleries are typically delivered within 2–3 weeks after your session (rush options available).</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">What if incidents come up?</button>
+                        <div class="faq-answer">I am flexible when problems arise. If there is a technical error on my end, more than likely you will recieve a discount or money back. Having a second shooter for events is an option but will be more expensive. </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Are prints available?</button>
+                        <div class="faq-answer"> You can request prints for an additional small fee (mainly just to cover material cost) - books, albumns, cards, etc. </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">What is the cancellation / rescheduling policy?</button>
+                        <div class="faq-answer"> I'm usually pretty flexible, but I would prefer at least a 24 hour notice. A cancellation or reschedule that is less than two hours before scheduled will result in a fee. A late fee may be a result if more late than a reasonable amount of time. </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Do you travel / What's the coverage area?</button>
+                        <div class="faq-answer"> I work in South-Eastern Idaho but am willing to travel. The first approximate 50 miles is free, outside this radius will result in an additional $0.70–$1.50 per mile. If I am already in an area (for example I visit Utah frequently) the travel fee will be removed. However, if more costly travel expenses are required (such as hotel fee) this will be added to the cost of the shoot.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Haylee Jacobson — South-Eastern Idaho</p>
+            <p style="margin: 1rem 0; font-size: 1.1rem;">Call or Text: <a href="tel:+12087150615" style="color: var(--light-accent);">(208) 715-0615</a></p>
+            <div class="social">
+    <a href="https://www.instagram.com/hayleejaco/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.behance.net/hayleejacobson" target="_blank"><i class="fab fa-behance"></i></a>
+    <a href="https://www.linkedin.com/in/hayleejacobson" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://www.facebook.com/people/Haylee-Jacobson-Professional-Works/100091837352580/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+</div>
+        </div>
+    </footer>
+    <script src="faq.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Simple carousel
+        const slides = document.querySelectorAll('.carousel-slide');
+        let current = 0;
+        if (slides.length > 1) {
+            setInterval(() => {
+                slides[current].classList.remove('active');
+                current = (current + 1) % slides.length;
+                slides[current].classList.add('active');
+            }, 5000);
+        }
+
+    </script>
+</body>
+</html>

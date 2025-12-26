@@ -1,0 +1,121 @@
+<!-- gallery.html - Main Gallery Overview Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Gallery — Haylee Jacobson</title>
+    
+    <!-- SEO Basics -->
+    <meta name="description" content="Explore photography and graphic design galleries by Haylee Jacobson. View portraits, families, weddings, branding, and more from South-Eastern Idaho.">
+    
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="Gallery — Haylee Jacobson | Photographer & Graphic Designer">
+    <meta property="og:description" content="Browse through curated galleries of photography sessions and graphic design projects.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/FAEAD4/3A83A3?text=Haylee+Jacobson+Gallery">
+    <meta property="og:url" content="https://yourdomain.com/gallery.html">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cardo:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <div class="logo">Haylee Jacobson</div>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html" class="active">Gallery</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section gallery-section">
+            <div class="container">
+                <h2>Gallery</h2>
+                <p class="tagline">Explore my photography and graphic design work. Click on a category or photoshoot to view the full gallery.</p>
+
+                <!-- Photography Section -->
+                <h3 style="margin-top: 4rem;">Photography Galleries</h3>
+                <div class="flex-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+                    <!-- Photoshoot Card: links to sub-gallery page (relative path) -->
+                    <a href="Gallery Files/Lex2026SeniorPics.html" style="text-decoration: none; color: inherit;">
+                        <div style="background: var(--light); padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
+                            <img src="Mediaphotos/Photography%20Grid/Lex2026SeniorPics/DSC_8346i.webp" alt="Thumbnail for Lexie Senior Photoshoot" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem;">
+                            <h4>Lexie Senior 2026</h4>
+                            <p>A beautiful golden hour session in South-Eastern Idaho. Click to view full gallery.</p>
+                        </div>
+                    </a>
+
+                    <!-- Add more photoshoot cards here -->
+                    <!-- Example: Portraits Category (if grouping by type instead of per shoot) -->
+                    <a href="portraits.html" style="text-decoration: none; color: inherit;">
+                        <div style="background: var(--light); padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
+                            <img src="https://via.placeholder.com/400x300/6299C1/FAEAD4?text=Portraits" alt="Thumbnail for Portraits Gallery" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem;">
+                            <h4>Portraits & Headshots</h4>
+                            <p>Individual sessions capturing personality and emotion.</p>
+                        </div>
+                    </a>
+
+                    <!-- Example: Families -->
+                    <a href="families.html" style="text-decoration: none; color: inherit;">
+                        <div style="background: var(--light); padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
+                            <img src="https://via.placeholder.com/400x300/A0CBE5/3A83A3?text=Families" alt="Thumbnail for Families Gallery" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem;">
+                            <h4>Family & Couples</h4>
+                            <p>Candid moments with loved ones in natural settings.</p>
+                        </div>
+                    </a>
+
+                    <!-- Add as many as needed -->
+                </div>
+
+                <!-- Graphic Design Section (optional - if you want to include it here) -->
+                <h3 style="margin-top: 5rem;">Graphic Design Galleries</h3>
+                <div class="flex-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+                    <!-- Similar cards for graphic design projects -->
+                    <a href="branding.html" style="text-decoration: none; color: inherit;">
+                        <div style="background: var(--light); padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s;">
+                            <img src="https://via.placeholder.com/400x300/3A83A3/FAEAD4?text=Branding" alt="Thumbnail for Branding Projects" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem;">
+                            <h4>Branding & Logos</h4>
+                            <p>Custom identity designs for businesses.</p>
+                        </div>
+                    </a>
+                    <!-- Add more -->
+                </div>
+
+                <p style="text-align: center; margin: 4rem 0;">Client galleries also available on <a href="https://hayleejacobsonphotography.mypixieset.com/" target="_blank" style="color: var(--primary);">Pixieset →</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Haylee Jacobson — South-Eastern Idaho</p>
+            <p style="margin: 1rem 0; font-size: 1.1rem;">Call or Text: <a href="tel:+12087150615" style="color: var(--light-accent);">(208) 715-0615</a></p>
+            <div class="social">
+                <a href="https://www.instagram.com/hayleejaco/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.behance.net/hayleejacobson" target="_blank"><i class="fab fa-behance"></i></a>
+                <a href="https://www.linkedin.com/in/hayleejacobson" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/people/Haylee-Jacobson-Professional-Works/100091837352580/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

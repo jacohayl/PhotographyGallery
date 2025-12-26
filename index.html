@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Haylee Jacobson — Photographer & Graphic Designer</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cardo:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <div class="logo">Haylee Jacobson</div>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Haylee Jacobson</h1>
+                <p>I deliver your final edited photos through <strong>Pixieset</strong> — beautiful, private, and easy to download/share.</p>
+                <a href="https://hayleejacobsonphotography.mypixieset.com/" 
+                   target="_blank" 
+                   class="btn primary">
+                    View example gallery →
+                </a>
+                <p class="warning"><br><br>!!! WARNING: Photos will remain on Pixieset for a limited time — do not wait to view and download your images once posted !!!</p>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section portfolio-section">
+            <div class="container">
+                <p style="text-align:center; margin:3rem 0;">
+                    <strong>Client galleries delivered via Pixieset</strong><br><br>
+                    <a href="https://hayleejacobsonphotography.mypixieset.com/" target="_blank" class="btn primary">View Client Galleries</a>
+                </p>
+
+                <div class="portfolio-category">
+                    <h3>Photography</h3>
+                    <div class="gallery-grid">
+                        <h2>My Recent Work</h2>
+                        <p class="tagline">Portraits, groups, landscapes, products, etc.</p>
+
+                        <!-- Example items — replace/add your own -->
+                        <div class="gallery-item">
+                            <img src="Mediaphotos/Photography%20Grid/Lex2026SeniorPics/DSC_8346i.webp" alt="Lexie senior portrait golden hour" loading="lazy">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="Mediaphotos/Photography%20Grid/Lex2026SeniorPics/DSC_8394.webp" alt="Lexie senior portrait outdoor" loading="lazy">
+                        </div>
+                        <!-- Add more as desired -->
+                    </div>
+                </div>
+
+                <div class="portfolio-category">
+                    <h3>Graphic Design</h3>
+                    <div class="graphic-grid">
+                        <h2>Graphic Design Work</h2>
+                        <p class="tagline">Branding, logos, print collateral, and digital assets.</p>
+
+                        <!-- Placeholder examples — replace with your work -->
+                        <div class="graphic-item">
+                            <img src="https://via.placeholder.com/800x800/FAEAD4/3A83A3?text=Logo+Project" alt="Example logo design" loading="lazy">
+                            <div class="caption">Example Brand Identity</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Haylee Jacobson — South-Eastern Idaho</p>
+            <p style="margin: 1rem 0; font-size: 1.1rem;">Call or Text: <a href="tel:+12087150615" style="color: var(--light-accent);">(208) 715-0615</a></p>
+            <div class="social">
+                <a href="https://www.instagram.com/hayleejaco/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.behance.net/hayleejacobson" target="_blank"><i class="fab fa-behance"></i></a>
+                <a href="https://www.linkedin.com/in/hayleejacobson" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/people/Haylee-Jacobson-Professional-Works/100091837352580/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="lightbox" class="lightbox">
+        <img id="lightbox-img" src="" alt="Enlarged image">
+        <button class="lightbox-close"><i class="fas fa-times"></i></button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
