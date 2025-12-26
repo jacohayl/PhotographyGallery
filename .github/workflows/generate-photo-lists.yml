@@ -1,0 +1,60 @@
+name: Auto-generate photo lists for gallery
+
+on: [push]
+
+jobs:
+  generate-lists:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      # ────────────────────────────────────────────────────────────────
+      # Generate list only for lex2026SeniorPics (current main gallery)
+      # ────────────────────────────────────────────────────────────────
+      - name: Generate lex2026SeniorPics photo list
+        run: |
+          cd Mediaphotos/photography-grid/lex2026SeniorPics || exit 0
+          
+          # List all image files (webp, jpg, jpeg, png - add more extensions if needed)
+          files=$(ls *.webp *.jpg *.jpeg *.png 2>/dev/null || true)
+          
+          if [ -z "$files" ]; then
+            echo "No images found in lex2026SeniorPics"
+            exit 0
+          fi
+          
+          echo "const lex2026Images = [" > ../../../lex2026-images.js
+          for file in $files; do
+            echo "  '$file'," >> ../../../lex2026-images.js
+          done
+          echo "];" >> ../../../lex2026-images.js
+          echo "export default lex2026Images;" >> ../../../lex2026-images.js
+
+      # ────────────────────────────────────────────────────────────────
+      # Optional: Also generate a list for ALL images directly in photography-grid/
+      # (uncomment the block below when you want to use it later)
+      # ────────────────────────────────────────────────────────────────
+      # - name: Generate root photography-grid photo list
+      #   run: |
+      #     cd Mediaphotos/photography-grid || exit 0
+      #     
+      #     files=$(ls *.webp *.jpg *.jpeg *.png 2>/dev/null || true)
+      #     
+      #     if [ -z "$files" ]; then
+      #       echo "No images found in photography-grid root"
+      #       exit 0
+      #     fi
+      #     
+      #     echo "const photographyGridRootImages = [" > ../../photography-grid-root-images.js
+      #     for file in $files; do
+      #       echo "  '$file'," >> ../../photography-grid-root-images.js
+      #     done
+      #     echo "];" >> ../../photography-grid-root-images.js
+      #     echo "export default photographyGridRootImages;" >> ../../photography-grid-root-images.js
+
+      - name: Commit generated JavaScript files
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Auto-update photo lists (lex2026 & optional root grid)
+          file_pattern: "*.js"
