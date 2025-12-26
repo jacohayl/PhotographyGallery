@@ -1,12 +1,16 @@
 name: Auto-generate photo lists for gallery
 
-on: [push, workflow_dispatch]
+on:
+  push:
+    paths:
+      - 'Photography Grid/Lex2026SeniorPics/**'   # only trigger when images change
+  workflow_dispatch:
 
 jobs:
   generate-lists:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # ← This is REQUIRED for git-auto-commit to push
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -14,39 +18,59 @@ jobs:
 
       - name: Generate lex2026SeniorPics photo list
         run: |
+          echo "Current working directory:"
           pwd
+          echo "Listing root:"
           ls -la
 
-          cd "Photography Grid/Lex2026SeniorPics" || { echo "CD failed!"; ls -la ..; exit 1; }
+          # Use find with exact path - more reliable than cd + glob
+          IMAGE_DIR="Photography Grid/Lex2026SeniorPics"
 
-          pwd
-          ls -la
-
-          # Find all image files (case-insensitive)
-          files=$(find . -maxdepth 1 -type f \( -iname "*.webp" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -printf '%f\n' | sort || true)
-
-          if [ -z "$files" ]; then
-            echo "No images found"
-            exit 0
+          if [ ! -d "$IMAGE_DIR" ]; then
+            echo "Error: Directory not found: $IMAGE_DIR"
+            echo "Listing parent directory for debug:"
+            ls -la "Photography Grid" || ls -la .
+            exit 1
           fi
 
-          echo "Found images:"
-          echo "$files"
+          echo "Found directory: $IMAGE_DIR"
+          echo "Listing content:"
+          ls -la "$IMAGE_DIR"
 
-          # Generate in ROOT (../../../ from current deep folder)
-          echo "const lex2026Images = [" > ../../../lex2026-images.js
-          for file in $files; do
-            echo "  '$file'," >> ../../../lex2026-images.js
-          done
-          echo "];" >> ../../../lex2026-images.js
-          echo "export default lex2026Images;" >> ../../../lex2026-images.js
+          # Find image files - one find command, very reliable
+          # -maxdepth 1 = only direct files, no subfolders
+          # -iname = case-insensitive
+          mapfile -t files < <(
+            find "$IMAGE_DIR" -maxdepth 1 -type f \
+              \( -iname "*.webp" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) \
+              -printf '%f\n' 2>/dev/null | sort -V
+          )
 
-          echo "Generated lex2026-images.js successfully"
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No image files found in $IMAGE_DIR"
+            echo "Skipping JS generation (empty array is fine)"
+            # You could create empty array file here if desired
+            echo "const lex2026Images = [];" > lex2026-images.js
+            echo "export default lex2026Images;" >> lex2026-images.js
+          else
+            echo "Found ${#files[@]} images:"
+            printf '  - %s\n' "${files[@]}"
 
-      - name: Commit generated file
+            # Generate clean JS file in repository root
+            {
+              echo "const lex2026Images = ["
+              printf "  '%s',\n" "${files[@]}"
+              echo "];"
+              echo ""
+              echo "export default lex2026Images;"
+            } > lex2026-images.js
+          fi
+
+      - name: Commit generated file if changed
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Auto-generated lex2026 photo list update
-          file_pattern: lex2026-images.js  # Exact name - no wildcard
+          commit_message: "chore: auto-update lex2026SeniorPics image list"
+          file_pattern: lex2026-images.js
           disable_globbing: true
+          skip_dirty_check: false
           branch: main
