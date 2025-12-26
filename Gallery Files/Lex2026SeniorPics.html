@@ -63,39 +63,42 @@
         <img id="lightbox-img" src="" alt="Enlarged photo">
     </div>
 
-    <script>
-    // filepath: c:\Users\hayle\OneDrive\Notebooks and Documents\HayleeJacobsonCreativeWork\BondBase\New folder\Gallery Files\Lex2026SeniorPics.html
-    (function () {
-        const basePath = '../Mediaphotos/Photography%20Grid/Lex2026SeniorPics/';
-        // Add any additional filenames from the Lex2026SeniorPics folder to this list
-        const filenames = [
-            'DSC_8346i.webp',
-            'DSC_8346ii.webp',
-            'DSC_8394.webp',
-            'DSC_8453.webp',
-            'LexSeniorPics2026_DSC_8243.webp',
-            'LexSeniorPics2026_DSC_8246.webp',
-            'LexSeniorPics2026_DSC_8246I.webp',
-            'LexSeniorPics2026_DSC_8247.webp',
-            'LexSeniorPics2026_DSC_8248.webp'
-        ];
+   <script>
+(function () {
+    const basePath = '../Mediaphotos/photography-grid/lex2026SeniorPics/';
+
+    // Dynamically load the generated list
+    const script = document.createElement('script');
+    script.src = '../lex2026-images.js';  // Adjust path if your HTML is in different folder level
+    script.onload = function() {
+        // lex2026Images comes from the generated file
+        if (typeof lex2026Images === 'undefined' || !Array.isArray(lex2026Images)) {
+            console.error("Photo list not loaded");
+            return;
+        }
 
         const grid = document.querySelector('.gallery-grid');
         if (!grid) return;
 
-        filenames.forEach((name, i) => {
+        lex2026Images.forEach((name, i) => {
             const item = document.createElement('div');
             item.className = 'gallery-item';
             const img = document.createElement('img');
-            img.src = basePath + encodeURIComponent(name).replace(/%2F/g, '/'); // encode unsafe chars
-            img.alt = `Lexie senior portrait ${i + 1}`;
+            img.src = basePath + name;
+            img.alt = `Lexie senior 2026 portrait ${i + 1}`;
             img.loading = 'lazy';
             item.appendChild(img);
             grid.appendChild(item);
         });
-    })();
-    </script>
+    };
+    script.onerror = function() {
+        console.error("Failed to load lex2026-images.js");
+    };
+    document.head.appendChild(script);
+})();
+</script>
 
     <script src="../script.js"></script>
 </body>
+
 </html>
