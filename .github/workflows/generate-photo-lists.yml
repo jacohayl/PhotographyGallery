@@ -1,12 +1,12 @@
 name: Auto-generate photo lists for gallery
 
-on: [push, workflow_dispatch]  # Added workflow_dispatch so you can run it manually
+on: [push, workflow_dispatch]  # Allows manual run
 
 jobs:
   generate-lists:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Required for git-auto-commit-action to push changes
+      contents: write  # ← Critical: allows pushing back to repo
 
     steps:
       - name: Checkout repository
@@ -14,30 +14,26 @@ jobs:
 
       - name: Generate lex2026SeniorPics photo list
         run: |
-          # Debug: show where we are and what folders exist
           pwd
           ls -la
 
-          # The REAL path from your repo (with space and exact casing)
-          # Note: top-level is "Photography Grid" (space, capital P & G)
-          cd "Photography Grid/Lex2026SeniorPics" || { echo "CD failed! Folder not found."; ls -la ..; exit 1; }
+          cd "Photography Grid/Lex2026SeniorPics" || { echo "CD failed!"; ls -la ..; exit 1; }
 
-          # Debug after cd
           pwd
           ls -la
 
-          # Find image files (case-insensitive extension matching)
-          files=$(ls *.[wW][eE][bB][pP] *.[jJ][pP][gG] *.[jJ][pP][eE][gG] *.[pP][nN][gG] 2>/dev/null || true)
+          # Better extension matching (case-insensitive)
+          files=$(find . -maxdepth 1 -type f \( -iname "*.webp" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -printf '%f\n' | sort || true)
 
           if [ -z "$files" ]; then
-            echo "No images found in the folder after successful cd"
+            echo "No images found"
             exit 0
           fi
 
-          echo "Found files:"
+          echo "Found images:"
           echo "$files"
 
-          # Generate the JS file (relative path goes up 3 levels to root)
+          # Generate file in repo ROOT (../../../ from deep folder)
           echo "const lex2026Images = [" > ../../../lex2026-images.js
           for file in $files; do
             echo "  '$file'," >> ../../../lex2026-images.js
@@ -45,12 +41,12 @@ jobs:
           echo "];" >> ../../../lex2026-images.js
           echo "export default lex2026Images;" >> ../../../lex2026-images.js
 
-          echo "Generated lex2026-images.js successfully"
+          echo "Generated lex2026-images.js"
 
-      - name: Commit generated JavaScript files
+      - name: Commit generated file
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Auto-update lex2026 photo list
-          file_pattern: lex2026-images.js       # Exact file, no wildcard
-          disable_globbing: true                # Prevents wildcard issues
-          skip_dirty_check: false
+          commit_message: Auto-generated lex2026 photo list
+          file_pattern: lex2026-images.js  # ← Exact filename (no wildcard)
+          disable_globbing: true           # ← Important for reliability
+          branch: main                     # ← Force to your main branch
