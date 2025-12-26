@@ -3,7 +3,7 @@ name: Auto-generate photo lists for gallery
 on:
   push:
     paths:
-      - 'Photography Grid/Lex2026SeniorPics/**'   # only trigger when images change
+      - 'Photography Grid/Lex2026SeniorPics/**'
   workflow_dispatch:
 
 jobs:
@@ -18,45 +18,48 @@ jobs:
 
       - name: Generate lex2026SeniorPics photo list
         run: |
-          echo "Current working directory:"
+          echo "=== Debug: Current directory & root listing ==="
           pwd
-          echo "Listing root:"
           ls -la
 
-          # Use find with exact path - more reliable than cd + glob
           IMAGE_DIR="Photography Grid/Lex2026SeniorPics"
 
+          echo ""
+          echo "=== Checking directory existence ==="
           if [ ! -d "$IMAGE_DIR" ]; then
-            echo "Error: Directory not found: $IMAGE_DIR"
-            echo "Listing parent directory for debug:"
-            ls -la "Photography Grid" || ls -la .
+            echo "ERROR: Directory '$IMAGE_DIR' not found!"
+            echo "Listing items that look similar in parent dir:"
+            ls -la "Photography Grid" 2>/dev/null || ls -la .
             exit 1
           fi
 
-          echo "Found directory: $IMAGE_DIR"
-          echo "Listing content:"
+          echo "Directory found: $IMAGE_DIR"
+          echo ""
+          echo "=== Directory contents ==="
           ls -la "$IMAGE_DIR"
 
-          # Find image files - one find command, very reliable
-          # -maxdepth 1 = only direct files, no subfolders
-          # -iname = case-insensitive
+          echo ""
+          echo "=== Finding images (case-insensitive) ==="
+
+          # Collect filenames only (-printf '%f\n') → one per line, sorted naturally
           mapfile -t files < <(
             find "$IMAGE_DIR" -maxdepth 1 -type f \
-              \( -iname "*.webp" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) \
+              \( -iname '*.webp' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \) \
               -printf '%f\n' 2>/dev/null | sort -V
           )
 
+          echo "Found ${#files[@]} image files"
+
           if [ ${#files[@]} -eq 0 ]; then
-            echo "No image files found in $IMAGE_DIR"
-            echo "Skipping JS generation (empty array is fine)"
-            # You could create empty array file here if desired
-            echo "const lex2026Images = [];" > lex2026-images.js
-            echo "export default lex2026Images;" >> lex2026-images.js
+            echo "→ No images found → creating empty array"
+            cat > lex2026-images.js << 'EOF'
+          const lex2026Images = [];
+          export default lex2026Images;
+          EOF
           else
-            echo "Found ${#files[@]} images:"
+            echo "→ Generating JS with the following files:"
             printf '  - %s\n' "${files[@]}"
 
-            # Generate clean JS file in repository root
             {
               echo "const lex2026Images = ["
               printf "  '%s',\n" "${files[@]}"
@@ -66,7 +69,11 @@ jobs:
             } > lex2026-images.js
           fi
 
-      - name: Commit generated file if changed
+          echo ""
+          echo "=== Generated file preview ==="
+          cat lex2026-images.js
+
+      - name: Commit changes if any
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: auto-update lex2026SeniorPics image list"
