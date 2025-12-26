@@ -1,12 +1,12 @@
 name: Auto-generate photo lists for gallery
 
-on: [push, workflow_dispatch]  # Allows manual run
+on: [push, workflow_dispatch]
 
 jobs:
   generate-lists:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # ← Critical: allows pushing back to repo
+      contents: write  # ← This is REQUIRED for git-auto-commit to push
 
     steps:
       - name: Checkout repository
@@ -22,7 +22,7 @@ jobs:
           pwd
           ls -la
 
-          # Better extension matching (case-insensitive)
+          # Find all image files (case-insensitive)
           files=$(find . -maxdepth 1 -type f \( -iname "*.webp" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -printf '%f\n' | sort || true)
 
           if [ -z "$files" ]; then
@@ -33,7 +33,7 @@ jobs:
           echo "Found images:"
           echo "$files"
 
-          # Generate file in repo ROOT (../../../ from deep folder)
+          # Generate in ROOT (../../../ from current deep folder)
           echo "const lex2026Images = [" > ../../../lex2026-images.js
           for file in $files; do
             echo "  '$file'," >> ../../../lex2026-images.js
@@ -41,12 +41,12 @@ jobs:
           echo "];" >> ../../../lex2026-images.js
           echo "export default lex2026Images;" >> ../../../lex2026-images.js
 
-          echo "Generated lex2026-images.js"
+          echo "Generated lex2026-images.js successfully"
 
       - name: Commit generated file
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Auto-generated lex2026 photo list
-          file_pattern: lex2026-images.js  # ← Exact filename (no wildcard)
-          disable_globbing: true           # ← Important for reliability
-          branch: main                     # ← Force to your main branch
+          commit_message: Auto-generated lex2026 photo list update
+          file_pattern: lex2026-images.js  # Exact name - no wildcard
+          disable_globbing: true
+          branch: main
